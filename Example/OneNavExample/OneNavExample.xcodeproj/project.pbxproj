@@ -31,6 +31,7 @@
 		881D05322D94191A0099C1BD /* OneNavExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneNavExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		881D05432D94191B0099C1BD /* OneNavExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneNavExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		881D054D2D94191B0099C1BD /* OneNavExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneNavExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		889664812D944259003650A2 /* OneNavExampleTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = OneNavExampleTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +81,7 @@
 		881D05292D94191A0099C1BD = {
 			isa = PBXGroup;
 			children = (
+				889664812D944259003650A2 /* OneNavExampleTests.xctestplan */,
 				881D05342D94191A0099C1BD /* OneNavExample */,
 				881D05462D94191B0099C1BD /* OneNavExampleTests */,
 				881D05502D94191B0099C1BD /* OneNavExampleUITests */,

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "10D18B81-1A19-4690-BFD3-D142E8600A1D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OneNavExample.xcodeproj",
+        "identifier" : "881D054C2D94191B0099C1BD",
+        "name" : "OneNavExampleUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
