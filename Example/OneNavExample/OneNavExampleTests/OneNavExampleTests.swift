@@ -10,7 +10,7 @@ import Testing
 struct OneNavExampleTests {
 
     @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        // No unit test here.
     }
 
 }
