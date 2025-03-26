@@ -1,0 +1,81 @@
+//
+//  OneGenericNavStack.swift
+//  OneNavigation
+//
+//  Created by Robin Enhorn on 2025-03-26.
+//
+
+import SwiftUI
+
+/// Simplified navigation stack wrapping a ``OneNavigationStack``.
+public struct OneNavStack<Root: View>: View {
+
+    let root: (OneErrorManager<OneGenericNavPath>, OnePathManager<OneGenericNavPath>) -> Root
+
+    public init(@ViewBuilder root: @escaping (OneErrorManager<OneGenericNavPath>, OnePathManager<OneGenericNavPath>) -> Root) {
+        self.root = root
+    }
+
+    public init(@ViewBuilder root: @escaping () -> Root) {
+        self.root = { _, _ in root() }
+    }
+
+    public var body: some View {
+        OneNavigationStack<OneGenericNavPath, Root> { err, path in
+            root(err, path)
+        }
+    }
+
+}
+
+#if DEBUG
+
+#Preview("Generic Nav Stack") {
+    OneNavStack { errorManager, pathManager in
+        VStack(spacing: .medium) {
+            Button("Error") {
+                errorManager.showRoot(error: .alert(message: "Hello"))
+            }
+            Button("Present") {
+                pathManager.present(id: "Presented view") {
+                    VStack(spacing: .medium) {
+                        PushPreview()
+                        Button("Dismiss") {
+                            pathManager.dismiss() // Parent path manager
+                        }
+                    }.navigationTitle("Presented")
+                }
+            }
+        }
+    }
+}
+
+fileprivate struct PushPreview: View {
+
+    @Environment(OnePathManager<OneGenericNavPath>.self) var pathManager
+    @Environment(OneErrorManager<OneGenericNavPath>.self) var errorManager
+
+    var body: some View {
+        Button("Push") {
+            pathManager.push(id: "Pushed view") {
+                VStack(spacing: .medium) {
+                    Button("Pop") {
+                        pathManager.pop()
+                    }
+                    Button("Error") {
+                        errorManager.show(
+                            error: .banner(message: "Error banner", dismissType: .automatic),
+                            forPath: .identifierOnly("Pushed view")
+                        )
+                    }
+                    Button("Dismiss") {
+                        pathManager.dismiss()
+                    }
+                }.navigationTitle("Pushed")
+            }
+        }
+    }
+
+}
+
+#endif
