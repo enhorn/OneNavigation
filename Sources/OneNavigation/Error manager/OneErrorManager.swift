@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Error manager for displaying errors.
-@MainActor @Observable public final class OneErrorManager<Path: OneNavPath>: Observable {
+@MainActor @Observable public final class OneErrorManager<Path: OneNavigationPath>: Observable {
 
     @MainActor var pathErrors: [Path: [OneDisplayableError]] = [:]
     @MainActor var rootErrors: [OneDisplayableError] = []

@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Implementation of the navigation stack. It's easier to use the ``OneNavStack`` version.
-public struct OneNavigationStack<Path: OneNavPath, Root: View>: View {
+public struct OneNavigationStack<Path: OneNavigationPath, Root: View>: View {
 
     @State var pathManager = OnePathManager<Path>()
 
@@ -163,13 +163,13 @@ private extension OneNavigationStack {
     }
 }
 
-@MainActor fileprivate struct OneExamplePath: OneNavPath {
+@MainActor fileprivate struct OneExamplePath: OneNavigationPath {
 
     nonisolated var id: String { title }
 
     let title: String
 
-    @MainActor @ViewBuilder func destination<Path: OneNavPath>(using pathManager: OnePathManager<Path>) -> AnyView {
+    @MainActor @ViewBuilder func destination<Path: OneNavigationPath>(using pathManager: OnePathManager<Path>) -> AnyView {
         AnyView(body)
     }
 

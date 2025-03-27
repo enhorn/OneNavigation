@@ -44,8 +44,8 @@ struct PushPreview: View {
 
     // Path manager & error manager from the automatically wrapping `OneNavStack`.
     // These are available as environment variables to anything inside a `OneNavStack` or `OneNavigationStack`.
-    @Environment(OnePathManager<OneGenericNavPath>.self) var pathManager
-    @Environment(OneErrorManager<OneGenericNavPath>.self) var errorManager
+    @Environment(OnePathManager<OneNavPath>.self) var pathManager
+    @Environment(OneErrorManager<OneNavPath>.self) var errorManager
 
     var body: some View {
         Button("Push") {

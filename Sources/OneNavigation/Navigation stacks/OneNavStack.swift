@@ -10,9 +10,9 @@ import SwiftUI
 /// Simplified navigation stack wrapping a ``OneNavigationStack``.
 public struct OneNavStack<Root: View>: View {
 
-    let root: (OneErrorManager<OneGenericNavPath>, OnePathManager<OneGenericNavPath>) -> Root
+    let root: (OneErrorManager<OneNavPath>, OnePathManager<OneNavPath>) -> Root
 
-    public init(@ViewBuilder root: @escaping (OneErrorManager<OneGenericNavPath>, OnePathManager<OneGenericNavPath>) -> Root) {
+    public init(@ViewBuilder root: @escaping (OneErrorManager<OneNavPath>, OnePathManager<OneNavPath>) -> Root) {
         self.root = root
     }
 
@@ -21,7 +21,7 @@ public struct OneNavStack<Root: View>: View {
     }
 
     public var body: some View {
-        OneNavigationStack<OneGenericNavPath, Root> { err, path in
+        OneNavigationStack<OneNavPath, Root> { err, path in
             root(err, path)
         }
     }
@@ -52,8 +52,8 @@ public struct OneNavStack<Root: View>: View {
 
 fileprivate struct PushPreview: View {
 
-    @Environment(OnePathManager<OneGenericNavPath>.self) var pathManager
-    @Environment(OneErrorManager<OneGenericNavPath>.self) var errorManager
+    @Environment(OnePathManager<OneNavPath>.self) var pathManager
+    @Environment(OneErrorManager<OneNavPath>.self) var errorManager
 
     var body: some View {
         Button("Push") {

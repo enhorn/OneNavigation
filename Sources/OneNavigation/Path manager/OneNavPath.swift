@@ -1,25 +1,37 @@
 //
-//  OneNavPath.swift
+//  OneGenericNavPath.swift
 //  OneNavigation
 //
-//  Created by Robin Enhorn on 2025-03-24.
+//  Created by Robin Enhorn on 2025-03-26.
 //
 
 import SwiftUI
 
-/// Navigation path definition.
-public protocol OneNavPath: Hashable, Identifiable, Equatable {
+/// Generic reusable navigation path.
+public struct OneNavPath: OneNavigationPath {
 
-    associatedtype Destination: View
+    public let id: String
+    let content: () -> AnyView
 
-    @MainActor @ViewBuilder func destination<Path: OneNavPath>(using pathManager: OnePathManager<Path>) -> Destination
+    public init(id: String, content: @escaping () -> some View) {
+        self.id = id
+        self.content = { AnyView(content()) }
+    }
 
-}
+    public static func path(id: String, content: @escaping () -> some View) -> OneNavPath {
+        OneNavPath(id: id, content: content)
+    }
 
-extension OneNavPath {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.id == rhs.id
+    @MainActor @ViewBuilder public func destination<Path>(using pathManager: OnePathManager<Path>) -> AnyView where Path : OneNavigationPath {
+        content()
+    }
+
+    public static func identifierOnly(_ id: String) -> OneNavPath {
+        path(id: id) { EmptyView() }
     }
 
 }

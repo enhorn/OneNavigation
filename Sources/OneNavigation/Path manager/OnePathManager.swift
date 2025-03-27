@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Path manager for pushing, popping and presenting modals.
-@MainActor @Observable public final class OnePathManager<Path: OneNavPath>: Observable {
+@MainActor @Observable public final class OnePathManager<Path: OneNavigationPath>: Observable {
 
     var path: [Path]
     var modal: Modal?
@@ -43,7 +43,7 @@ import SwiftUI
 
 }
 
-extension OnePathManager where Path == OneGenericNavPath {
+extension OnePathManager where Path == OneNavPath {
 
     public func push<Content: View>(id: String, content: @escaping  () -> Content) {
         push(Path(id: id, content: content))
