@@ -12,10 +12,14 @@ public struct OneNavStack<Root: View>: View {
 
     let root: (OneErrorManager<OneNavPath>, OnePathManager<OneNavPath>) -> Root
 
+    /// Designated initializer.
+    /// - Parameter root: View builder block with error manager & path manager.
     public init(@ViewBuilder root: @escaping (OneErrorManager<OneNavPath>, OnePathManager<OneNavPath>) -> Root) {
         self.root = root
     }
 
+    /// Designated initializer.
+    /// - Parameter root: View builder block without parameters.
     public init(@ViewBuilder root: @escaping () -> Root) {
         self.root = { _, _ in root() }
     }

@@ -12,7 +12,11 @@ import SwiftUI
 
     @MainActor var pathErrors: [Path: [OneDisplayableError]] = [:]
     @MainActor var rootErrors: [OneDisplayableError] = []
-
+    
+    /// Displays the error for the given path.
+    /// - Parameters:
+    ///   - error: Error to display.
+    ///   - path: Path to display the error at.
     public func show(error: OneDisplayableError, forPath path: Path?) {
         if let path {
             var errors = pathErrors[path, default: []]
@@ -27,11 +31,15 @@ import SwiftUI
             }
         }
     }
-
+    
+    /// Displays the error at the rot navigatin path.
+    /// - Parameter error: Error to display.
     public func showRoot(error: OneDisplayableError) {
         show(error: error, forPath: nil)
     }
-
+    
+    /// Removes the given error.
+    /// - Parameter error: Error to remove.
     public func remove(error: OneDisplayableError) {
         if rootErrors.contains(error) {
             rootErrors.removeAll { $0 == error }
@@ -41,7 +49,8 @@ import SwiftUI
             }
         }
     }
-
+    
+    /// Removes all errors for all paths.
     public func clear() {
         pathErrors.removeAll()
         rootErrors.removeAll()

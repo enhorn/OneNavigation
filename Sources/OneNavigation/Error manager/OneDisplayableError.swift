@@ -11,9 +11,21 @@ import SFSafeSymbols
 /// Available displayable error types.
 public enum OneDisplayableError {
 
+    /// Dismiss type
     public enum BannerDismissType: Equatable {
-        case none, dismiss, automatic(TimeInterval)
+
+        /// Nondismissig banner.
+        case none
+
+        /// Manual disssal of banner.
+        case dismiss
+
+        /// Automatic dismissal of the banner.
+        case automatic(TimeInterval)
+
+        /// Automatic dismissal of the banner after threeseconds.
         public static var automatic: BannerDismissType { .automatic(3) }
+
     }
 
     /// Banner that will be displayed at the top of the view.
@@ -29,8 +41,10 @@ public enum OneDisplayableError {
 
 extension OneDisplayableError: Identifiable, Equatable, CustomStringConvertible {
 
+    /// Error identifier.
     public var id: String { description }
 
+    /// Error description.
     public var description: String {
         switch self {
             case .banner(let message, _, _): return "Banner<\(message)>"

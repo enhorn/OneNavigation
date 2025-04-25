@@ -26,11 +26,15 @@ public struct OneNavigationStack<Path: OneNavigationPath, Root: View>: View {
             $pathManager.path
         }
     }
-
+    
+    /// Designated initializer.
+    /// - Parameter root: View builder block with error manager & path manager.
     public init(@ViewBuilder root: @escaping (OneErrorManager<Path>, OnePathManager<Path>) -> Root) {
         self.root = root
     }
 
+    /// Designated initializer.
+    /// - Parameter root: View builder block without parameters.
     public init(@ViewBuilder root: @escaping () -> Root) {
         self.root = { _, _ in root() }
     }
